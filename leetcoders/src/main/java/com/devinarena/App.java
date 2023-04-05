@@ -13,5 +13,7 @@ public class App {
 
         LeetCoder leetCoder = new LeetCoder();
         leetCoder.open("https://leetcode.com/problemset/all/");
+
+        leetCoder.dispose();
     }
 }
