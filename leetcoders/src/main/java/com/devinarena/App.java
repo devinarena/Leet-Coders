@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\devin\\Documents\\chromedriver.exe");
 
-        LeetCoder leetCoder = new LeetCoder();
+        LeetCoder leetCoder = LeetCoder.getInstance();
         leetCoder.open("https://leetcode.com/problemset/all/");
 
         leetCoder.dispose();

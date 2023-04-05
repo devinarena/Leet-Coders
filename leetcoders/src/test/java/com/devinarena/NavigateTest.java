@@ -14,10 +14,10 @@ public class NavigateTest {
     private final String PASSWORD = "l33tc0der5";
 
     public NavigateTest() {
-        leetCoder = new LeetCoder();
+        leetCoder = LeetCoder.getInstance();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, groups = {"login", "find-problem"})
     public void navigateTest() throws InterruptedException {
         leetCoder.maximize();
         leetCoder.open("https://leetcode.com/");
@@ -29,7 +29,7 @@ public class NavigateTest {
         Thread.sleep((long) (TIME_FACTOR * 1000));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, groups = {"login", "find-problem"})
     public void loginTest() throws InterruptedException {
         leetCoder.type(By.id("id_login"), USERNAME);
         leetCoder.type(By.id("id_password"), PASSWORD);
@@ -38,10 +38,10 @@ public class NavigateTest {
 
         leetCoder.click(By.id("signin_btn"));
 
-        Thread.sleep((long) (TIME_FACTOR * 2500));
+        Thread.sleep((long) (TIME_FACTOR * 3000));
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, groups = {"find-problem"})
     public void findProblemTest() throws InterruptedException {
         leetCoder.click(By.linkText("Problems"));
 
@@ -56,11 +56,6 @@ public class NavigateTest {
         leetCoder.click(By.partialLinkText("Merge k Sorted"));
 
         Thread.sleep((long) (TIME_FACTOR * 2500));
-    }
-
-    @Test(priority = 4)
-    public void exitTest() {
-        leetCoder.dispose();
     }
 
 }
