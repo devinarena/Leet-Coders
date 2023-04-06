@@ -2,7 +2,6 @@ package com.devinarena;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -15,6 +14,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * A singleton class that allows us to interact with the LeetCode website.
  */
 public class LeetCoder {
+
+    public static float TIME_FACTOR = 1.0f;
 
     static LeetCoder leetCoder;
 
@@ -58,7 +59,7 @@ public class LeetCoder {
         getElement(locator).sendKeys(text);
     }
 
-    public String readSolution(int problem) {
+    public String getSolution(int problem) {
         StringBuilder builder = new StringBuilder();
 
         try {
@@ -76,8 +77,13 @@ public class LeetCoder {
         return builder.toString().trim();
     }
 
+    public void clearPrevious() {
+        getElement(By.xpath("//*[@id=\"editor\"]/div[4]/div[1]/div/div/div[1]/textarea")).clear();
+    }
+
     public void dispose() {
         driver.quit();
+        leetCoder = null;
     }
 
 }
