@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * A singleton class that allows us to interact with the LeetCode website.
@@ -59,26 +61,29 @@ public class LeetCoder {
         getElement(locator).sendKeys(text);
     }
 
-    public String getSolution(int problem) {
+    public String getSolution(int problem) throws IOException {
         StringBuilder builder = new StringBuilder();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("solutions", "problem" + problem + ".txt")));
+        BufferedReader br = new BufferedReader(new FileReader(new File("solutions", problem + ".py")));
 
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                builder.append(line);
-                builder.append(System.lineSeparator());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            builder.append(line);
+            builder.append(System.lineSeparator());
         }
+
+        br.close();
 
         return builder.toString().trim();
     }
 
     public void clearPrevious() {
-        getElement(By.xpath("//*[@id=\"editor\"]/div[4]/div[1]/div/div/div[1]/textarea")).clear();
+        new Actions(driver).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+        new Actions(driver).sendKeys(Keys.DELETE).perform();
+    }
+
+    public void paste() {
+        new Actions(driver).keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
     }
 
     public void dispose() {
