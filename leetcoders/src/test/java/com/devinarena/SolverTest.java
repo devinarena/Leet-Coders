@@ -21,7 +21,7 @@ public class SolverTest {
         leetCoder = LeetCoder.getInstance();
     }
 
-    @Test(priority = 1, dependsOnGroups = {"find-problem"})
+    @Test(priority = 1, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
     public void changeLanguageTest() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[1]/div[1]/div"));
 
@@ -32,7 +32,7 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
-    @Test(priority = 2, dependsOnGroups = {"find-problem"})
+    @Test(priority = 2, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
     public void clearPrevious() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[2]/div/div[3]/button"));
 
@@ -43,9 +43,18 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
+    @Test(priority = 3, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
+    public void failProblem() throws InterruptedException {
+        leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[3]/div/div[3]/div/div/div/div/div/div[3]/button[3]"));
 
+        Thread.sleep((long) (LeetCoder.TIME_FACTOR * 5000));
 
-    @Test(priority = 3, dependsOnGroups = {"find-problem"})
+        leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[3]/div/div[3]/div/div/div[1]/div/div[3]/div[4]"));
+
+        Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
+    }
+
+    @Test(priority = 4, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
     public void attemptSolve() throws InterruptedException, IOException {
 
         String solution = leetCoder.getSolution(23);
@@ -78,6 +87,10 @@ public class SolverTest {
         leetCoder.paste();
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
+
+        leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[1]/div/div[3]/div/div/div[3]/div/div/div[3]/button[3]"));
+
+        Thread.sleep((long) (LeetCoder.TIME_FACTOR * 5000));
     }
 
     @AfterTest

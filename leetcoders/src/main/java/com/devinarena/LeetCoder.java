@@ -86,6 +86,10 @@ public class LeetCoder {
         new Actions(driver).keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
     }
 
+    public void submit() {
+        new Actions(driver).keyDown(Keys.CONTROL).sendKeys("enter").keyUp(Keys.CONTROL).perform();
+    }
+
     public void dispose() {
         driver.quit();
         leetCoder = null;
