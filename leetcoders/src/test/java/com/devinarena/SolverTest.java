@@ -9,6 +9,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -16,7 +17,7 @@ public class SolverTest {
     
     private LeetCoder leetCoder;
 
-    @BeforeTest
+    @BeforeClass
     public void setUp() {
         leetCoder = LeetCoder.getInstance();
     }

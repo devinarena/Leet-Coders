@@ -1,14 +1,19 @@
 package com.devinarena;
 
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SignoutTest {
     
     private LeetCoder leetCoder;
     
-    public SignoutTest() {
+    
+
+    @BeforeClass
+    public void setUp() {
         leetCoder = LeetCoder.getInstance();
     }
 
@@ -24,7 +29,7 @@ public class SignoutTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 5000));
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         leetCoder.dispose();
     }

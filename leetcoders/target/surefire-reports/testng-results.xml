@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-04-13T17:39:45 EDT" name="Navigate" finished-at="2023-04-13T17:40:11 EDT" duration-ms="26685">
+    <groups>
+      <group name="find-problem">
+        <method signature="NavigateTest.navigateTest()[pri:1, instance:com.devinarena.NavigateTest@43195e57]" name="navigateTest" class="com.devinarena.NavigateTest"/>
+        <method signature="NavigateTest.loginTest()[pri:2, instance:com.devinarena.NavigateTest@43195e57]" name="loginTest" class="com.devinarena.NavigateTest"/>
+        <method signature="NavigateTest.findProblemTest()[pri:3, instance:com.devinarena.NavigateTest@43195e57]" name="findProblemTest" class="com.devinarena.NavigateTest"/>
+      </group> <!-- find-problem -->
+      <group name="login">
+        <method signature="NavigateTest.navigateTest()[pri:1, instance:com.devinarena.NavigateTest@43195e57]" name="navigateTest" class="com.devinarena.NavigateTest"/>
+        <method signature="NavigateTest.loginTest()[pri:2, instance:com.devinarena.NavigateTest@43195e57]" name="loginTest" class="com.devinarena.NavigateTest"/>
+      </group> <!-- login -->
+    </groups>
+    <test started-at="2023-04-13T17:39:45 EDT" name="Nav" finished-at="2023-04-13T17:40:11 EDT" duration-ms="26685">
+      <class name="com.devinarena.NavigateTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.devinarena.NavigateTest@43195e57]" started-at="2023-04-13T17:39:45 EDT" name="setUp" finished-at="2023-04-13T17:39:47 EDT" duration-ms="2233" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="navigateTest()[pri:1, instance:com.devinarena.NavigateTest@43195e57]" started-at="2023-04-13T17:39:47 EDT" name="navigateTest" finished-at="2023-04-13T17:39:55 EDT" duration-ms="8340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateTest -->
+        <test-method signature="loginTest()[pri:2, instance:com.devinarena.NavigateTest@43195e57]" started-at="2023-04-13T17:39:55 EDT" name="loginTest" finished-at="2023-04-13T17:40:00 EDT" duration-ms="4463" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method signature="findProblemTest()[pri:3, instance:com.devinarena.NavigateTest@43195e57]" started-at="2023-04-13T17:40:00 EDT" name="findProblemTest" finished-at="2023-04-13T17:40:11 EDT" duration-ms="11602" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findProblemTest -->
+      </class> <!-- com.devinarena.NavigateTest -->
+    </test> <!-- Nav -->
+  </suite> <!-- Navigate -->
+</testng-results>
