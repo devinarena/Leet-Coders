@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,7 +40,6 @@ public class LeetCoder {
         WebElement el = driver.findElement(locator);
 
         if (el == null) {
-            // TODO: For now just throw an exception to fail the test
             throw new RuntimeException("Element not found: " + locator.toString());
         }
 
@@ -64,7 +65,7 @@ public class LeetCoder {
     public String getSolution(int problem) throws IOException {
         StringBuilder builder = new StringBuilder();
 
-        BufferedReader br = new BufferedReader(new FileReader(new File("solutions", problem + ".py")));
+        BufferedReader br = new BufferedReader(new FileReader(new File("solutions", String.valueOf(problem))));
 
         String line = null;
         while ((line = br.readLine()) != null) {
@@ -88,6 +89,24 @@ public class LeetCoder {
 
     public void submit() {
         new Actions(driver).keyDown(Keys.CONTROL).sendKeys("enter").keyUp(Keys.CONTROL).perform();
+    }
+
+    public void takeScreenshot() {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File src = ts.getScreenshotAs(OutputType.FILE);
+        src.renameTo(new File("output", "screenshot.png"));
+    }
+
+    public String getLanguageXPath(String language) {
+        if (language.equalsIgnoreCase("C++")) {
+            return "/html/body/div[1]/div/div/div/div/div/div[3]/div/div/div/div/div/div[3]/div[1]/div[1]/div/ul/li[1]";
+        } else if (language.equalsIgnoreCase("python")) {
+            return "/html/body/div[1]/div/div/div/div/div/div[3]/div/div[1]/div/div/div/div[3]/div[1]/div[1]/div/ul/li[4]";
+        } else if (language.equalsIgnoreCase("java")) {
+            return "/html/body/div[1]/div/div/div/div/div/div[3]/div/div/div/div/div/div[3]/div[1]/div[1]/div/ul/li[2]";
+        }
+
+        return "";
     }
 
     public void dispose() {

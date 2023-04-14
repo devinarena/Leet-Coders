@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SolveProblem50">
+    <test name="Problem50">
+        <parameter name="language" value="java" />
+        <parameter name="problemId" value="50" />
+        <parameter name="problemName" value="50. Pow(x,n)" />
+
+        <packages>
+            <package name="com.devinarena"/>
+        </packages>
+    </test>
+</suite>

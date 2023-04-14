@@ -1,0 +1,23 @@
+class Solution {
+    public double myPow(double x, int n) {
+        long fn = n;
+        if (fn < 0)
+            fn = -fn;
+        double ans = 1;
+        
+         
+        while (fn > 0) {
+            if (fn % 2 == 1) {
+                ans = ans * x;
+                fn--;
+            }
+            x = x * x;
+            fn /= 2;
+        }
+        
+        if (n < 0)
+            return 1 / ans;
+        
+        return ans;
+    }
+}

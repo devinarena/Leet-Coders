@@ -2,6 +2,7 @@ package com.devinarena;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class NavigateTest {
@@ -35,7 +36,7 @@ public class NavigateTest {
         leetCoder.type(By.id("id_login"), USERNAME);
         leetCoder.type(By.id("id_password"), PASSWORD);
 
-        Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
+        Thread.sleep((long) (LeetCoder.TIME_FACTOR * 60000));
 
         leetCoder.click(By.id("signin_btn"));
 
@@ -43,18 +44,19 @@ public class NavigateTest {
     }
 
     @Test(priority = 3, groups = {"find-problem"})
-    public void findProblemTest() throws InterruptedException {
+    @Parameters("problemName")
+    public void findProblemTest(String problemName) throws InterruptedException {
         leetCoder.click(By.linkText("Problems"));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
 
         leetCoder.type(
                 By.cssSelector("input[placeholder='Search questions']"),
-                "Merge k Sorted Lists");
+                problemName);
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 2500 ));
 
-        leetCoder.click(By.partialLinkText("Merge k Sorted"));
+        leetCoder.click(By.linkText(problemName));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 2500));
     }

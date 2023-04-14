@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SolveProblem23">
+    <test name="Problem23">
+        <parameter name="language" value="python" />
+        <parameter name="problemId" value="23" />
+        <parameter name="problemName" value="23. Merge k Sorted Lists" />
+
+        <packages>
+            <package name="com.devinarena"/>
+        </packages>
+    </test>
+</suite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SolveProblem1">
+    <test name="Problem1">
+        <parameter name="language" value="C++" />
+        <parameter name="problemId" value="1" />
+        <parameter name="problemName" value="1. Two Sum" />
+
+        <packages>
+            <package name="com.devinarena"/>
+        </packages>
+    </test>
+</suite>

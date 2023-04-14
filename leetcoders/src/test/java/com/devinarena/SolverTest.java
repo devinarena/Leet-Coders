@@ -11,10 +11,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class SolverTest {
-    
+
     private LeetCoder leetCoder;
 
     @BeforeClass
@@ -22,29 +23,31 @@ public class SolverTest {
         leetCoder = LeetCoder.getInstance();
     }
 
-    @Test(priority = 1, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
-    public void changeLanguageTest() throws InterruptedException {
+    @Test(priority = 1, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
+    @Parameters("language")
+    public void changeLanguageTest(String language) throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[1]/div[1]/div"));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 500));
 
-        leetCoder.click(By.xpath("/html/body/div[1]/div/div/div/div/div/div[3]/div/div[1]/div/div/div/div[3]/div[1]/div[1]/div/ul/li[4]"));
+        leetCoder.click(By.xpath(leetCoder.getLanguageXPath(language)));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
-    @Test(priority = 2, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
+    @Test(priority = 2, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     public void clearPrevious() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[2]/div/div[3]/button"));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
 
-        leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[2]/div/div[3]/div/div/div/div[2]/div/div[2]/div/div/div[2]/button"));
+        leetCoder.click(By.xpath(
+                "//*[@id=\"editor\"]/div[3]/div[2]/div/div[3]/div/div/div/div[2]/div/div[2]/div/div/div[2]/button"));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
-    @Test(priority = 3, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
+    @Test(priority = 3, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     public void failProblem() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[3]/div/div[3]/div/div/div/div/div/div[3]/button[3]"));
 
@@ -55,14 +58,15 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
-    @Test(priority = 4, groups = {"solve-problem"}, dependsOnGroups = {"find-problem"})
-    public void attemptSolve() throws InterruptedException, IOException {
+    @Test(priority = 4, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
+    @Parameters("problemId")
+    public void attemptSolve(int problemId) throws InterruptedException, IOException {
 
-        String solution = leetCoder.getSolution(23);
+        String solution = leetCoder.getSolution(problemId);
 
         StringSelection selection = new StringSelection(solution);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-        
+
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 2500));
 
         leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[3]"));
@@ -73,17 +77,17 @@ public class SolverTest {
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
 
-        // print the clipboard contents
-        try {
-            System.out.println(Toolkit.getDefaultToolkit().getSystemClipboard().getData(
-                    java.awt.datatransfer.DataFlavor.stringFlavor));
-        } catch (HeadlessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // DEBUG: print the clipboard contents
+        // try {
+        //     System.out.println(Toolkit.getDefaultToolkit().getSystemClipboard().getData(
+        //             java.awt.datatransfer.DataFlavor.stringFlavor));
+        // } catch (HeadlessException e) {
+        //     e.printStackTrace();
+        // } catch (UnsupportedFlavorException e) {
+        //     e.printStackTrace();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
 
         leetCoder.paste();
 
