@@ -23,6 +23,12 @@ public class SolverTest {
         leetCoder = LeetCoder.getInstance();
     }
 
+    /**
+     * Tests changing the language of the editor.
+     * 
+     * @param language The language to change to.
+     * @throws InterruptedException
+     */
     @Test(priority = 1, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     @Parameters("language")
     public void changeLanguageTest(String language) throws InterruptedException {
@@ -35,6 +41,11 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
+    /**
+     * Tests clearing the previous solution.
+     * 
+     * @throws InterruptedException
+     */
     @Test(priority = 2, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     public void clearPrevious() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"editor\"]/div[3]/div[2]/div/div[3]/button"));
@@ -47,6 +58,11 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
+    /**
+     * Tests failing the problem with a blank solution.
+     * 
+     * @throws InterruptedException
+     */
     @Test(priority = 3, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     public void failProblem() throws InterruptedException {
         leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[3]/div/div[3]/div/div/div/div/div/div[3]/button[3]"));
@@ -58,6 +74,13 @@ public class SolverTest {
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 1000));
     }
 
+    /**
+     * Tests solving the problem with a solution.
+     * 
+     * @param problemId The ID of the problem to solve.
+     * @throws InterruptedException
+     * @throws IOException
+     */
     @Test(priority = 4, groups = { "solve-problem" }, dependsOnGroups = { "find-problem" })
     @Parameters("problemId")
     public void attemptSolve(int problemId) throws InterruptedException, IOException {
@@ -96,11 +119,6 @@ public class SolverTest {
         leetCoder.click(By.xpath("//*[@id=\"qd-content\"]/div[1]/div/div[3]/div/div/div[3]/div/div/div[3]/button[3]"));
 
         Thread.sleep((long) (LeetCoder.TIME_FACTOR * 5000));
-    }
-
-    @AfterTest
-    public void tearDown() {
-        leetCoder.dispose();
     }
 
 }

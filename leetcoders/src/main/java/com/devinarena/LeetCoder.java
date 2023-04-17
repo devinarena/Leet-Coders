@@ -23,6 +23,9 @@ public class LeetCoder {
 
     static LeetCoder leetCoder;
 
+    /**
+     * Returns the singleton instance of the LeetCoder class.
+     */
     static LeetCoder getInstance() {
         if (leetCoder == null) {
             leetCoder = new LeetCoder();
@@ -32,10 +35,21 @@ public class LeetCoder {
 
     private WebDriver driver;
 
-    public LeetCoder() {
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private LeetCoder() {
         driver = new ChromeDriver();
     }
 
+    /**
+     * Finds the element with the given locator and returns it. If the element is
+     * not
+     * found, a RuntimeException is thrown.
+     * 
+     * @param locator The locator of the element to find.
+     * @return The element with the given locator.
+     */
     private WebElement getElement(By locator) {
         WebElement el = driver.findElement(locator);
 
@@ -46,22 +60,48 @@ public class LeetCoder {
         return el;
     }
 
+    /**
+     * Opens the given url in the browser.
+     * 
+     * @param url
+     */
     public void open(String url) {
         driver.get(url);
     }
 
+    /**
+     * Maximizes the browser window.
+     */
     public void maximize() {
         driver.manage().window().maximize();
     }
 
+    /**
+     * Clicks on a specific element.
+     * 
+     * @param locator The locator of the element to click.
+     */
     public void click(By locator) {
         getElement(locator).click();
     }
 
+    /**
+     * Enters text into a specific element.
+     * 
+     * @param locator The locator of the element to enter text into.
+     * @param text    The text to enter.
+     */
     public void type(By locator, String text) {
         getElement(locator).sendKeys(text);
     }
 
+    /**
+     * Reads a solution file for a specific problem number.
+     * 
+     * @param problem The problem number.
+     * @return The solution for the given problem number.
+     * @throws IOException If the solution file cannot be read.
+     */
     public String getSolution(int problem) throws IOException {
         StringBuilder builder = new StringBuilder();
 
@@ -78,25 +118,43 @@ public class LeetCoder {
         return builder.toString().trim();
     }
 
+    /**
+     * CTRL+A and then deletes the text in the current text field.
+     */
     public void clearPrevious() {
         new Actions(driver).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
         new Actions(driver).sendKeys(Keys.DELETE).perform();
     }
 
+    /**
+     * Pastes text from the clipboard.
+     */
     public void paste() {
         new Actions(driver).keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
     }
 
+    /**
+     * Submits the current code.
+     */
     public void submit() {
         new Actions(driver).keyDown(Keys.CONTROL).sendKeys("enter").keyUp(Keys.CONTROL).perform();
     }
 
+    /**
+     * Takes a screenshot of the current page.
+     */
     public void takeScreenshot() {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
         src.renameTo(new File("output", "screenshot.png"));
     }
 
+    /**
+     * Returns the xpath for the given language.
+     * 
+     * @param language The language to get the xpath for.
+     * @return The xpath for the given language.
+     */
     public String getLanguageXPath(String language) {
         if (language.equalsIgnoreCase("C++")) {
             return "/html/body/div[1]/div/div/div/div/div/div[3]/div/div/div/div/div/div[3]/div[1]/div[1]/div/ul/li[1]";
@@ -109,6 +167,9 @@ public class LeetCoder {
         return "";
     }
 
+    /**
+     * Disposes of the LeetCoder instance.
+     */
     public void dispose() {
         driver.quit();
         leetCoder = null;

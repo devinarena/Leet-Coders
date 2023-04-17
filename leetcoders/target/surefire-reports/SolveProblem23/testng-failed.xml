@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [SolveProblem23]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="Problem23(failed)" verbose="0">
+    <parameter name="language" value="python"/>
+    <parameter name="problemName" value="23. Merge k Sorted Lists"/>
+    <parameter name="problemId" value="23"/>
+    <classes>
+      <class name="com.devinarena.SolverTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="attemptSolve" invocation-numbers="0"/>
+          <include name="failProblem"/>
+        </methods>
+      </class> <!-- com.devinarena.SolverTest -->
+      <class name="com.devinarena.SignoutTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="screenshotPageTest"/>
+          <include name="tearDown"/>
+          <include name="signoutTest"/>
+          <include name="confirmSignoutTest"/>
+        </methods>
+      </class> <!-- com.devinarena.SignoutTest -->
+    </classes>
+  </test> <!-- Problem23(failed) -->
+</suite> <!-- Failed suite [SolveProblem23] -->
